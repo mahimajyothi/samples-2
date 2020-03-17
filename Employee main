@@ -1,0 +1,66 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+class Employee {
+    private String name;
+    private String code;
+    private String gender;
+    private String location;
+    private static int num=0;
+    // creating constructor
+    public Employee(String name, String gender, String location) {
+        this.name = name;  // Assigning the given data to variables using this keyword
+        this.code = generateCode(location);  
+        this.gender = gender;
+        this.location = location;
+    }
+    public String generateCode(String location){
+        char local=location.charAt(0);  // takes 1st letter of the location
+        ++num;  // incrementing number
+        String zeros = null;  
+        String generator=null;
+        if(num>0&&num<10)  //Checks the condition and executes the code and assigned the zeros
+            zeros="000";
+        else if(num>10)
+            zeros="00";
+        else if(num>100&&num<1000)
+            zeros="0";
+        else
+            System.out.println("the employees generated are beyond limit");
+        if(num<1000){
+            generator=local+zeros+num;  // takes 1st letter of the location and zeros and number
+        }
+        return generator;  // cobination of the 1st letter of the location and zeros and number is returned
+    }
+
+
+    @Override
+    public String toString() {  // returns the details of the employee
+        return "Employee [name=" + name + ", code=" + code + ", gender=" + gender + ", location=" + location + "]";
+    }
+}
+public class EmployeeMain {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        ArrayList <Employee> employes=new ArrayList<Employee>();
+        char ch='y';
+        // checking the condition and enters into the loop
+        while (ch=='y'||ch=='Y'){
+            System.out.println("enter employee name");  
+            String name=br.readLine();  // takes name of the employee
+            System.out.println("enter employee gender");
+            String gender=br.readLine();  // takes gender
+            System.out.println("enter employee location such as (north south east west)");
+            String location=br.readLine();  // takes location
+            Employee emp=new Employee(name,gender,location);  // calling constructor
+            employes.add(emp);
+            System.out.println("enter yes or no for adding another employee(y/n)");
+            ch=br.readLine().charAt(0); // takes y/n from console
+        }
+        for(Employee emp:employes){  // printing the employee details
+            System.out.println(emp.toString());
+        }
+    }
+}
