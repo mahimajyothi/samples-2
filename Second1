@@ -1,0 +1,62 @@
+//Correct code to count number 
+//of employees excluding interns. 
+class connection
+{ 
+
+    private String Databaseurl; 
+    private String username; 
+    private String password;
+    private int ID; 
+    private static int nextId=1; 
+    //it is made static because it 
+    // is keep common among all and 
+    // shared by all objects 
+    public connection(String Databaseurl,String username,String password) 
+    { 
+        this.Databaseurl=Databaseurl;
+        this.username=username;
+        this.password=password;
+        this.ID = nextId++; 
+    } 
+    public void show() 
+    { 
+        System.out.println("Id="+ID+"\nDATABASEURL="+Databaseurl+"\nUSERNAME="+username+"\npassword="+password); 
+    } 
+    public void showNextId() 
+    { 
+        System.out.println("Next connection id will be="+nextId); 
+    } 
+    protected void finalize() 
+    { 
+        --nextId;  
+        //In this case, 
+        //gc will call finalize()  
+        //for 2 times for 2 objects. 
+    } 
+} 
+
+//it is closing brace of Employee class 
+public class Second
+{ 
+    public static void main(String []args) 
+    { 
+        connection E=new connection("www.Google.com","abcd","12345"); 
+        connection F=new connection("www.Facebook.com","efgh","67890"); 
+        connection G=new connection("www.Gmail.com","ijkl","85209"); 
+        E.show(); 
+        F.show(); 
+        G.show(); 
+        {  
+            //It is sub block to keep 
+            connection X=new connection("www.flipkart.com","mnop","06787"); 
+            connection Y=new connection("www.hcl.com","qrst","12345678"); 
+            X.show(); 
+            Y.show(); 
+            X.showNextId();
+            X = Y = null; 
+            System.gc();  
+            System.runFinalization(); 
+        }  
+    } 
+}
+Output:
