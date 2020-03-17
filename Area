@@ -1,0 +1,128 @@
+import java.util.*;
+//Creating abstract class of shape
+abstract class Shape {
+    // Creating abstract method of numberofSides
+    public abstract void  numberOfSides();
+    // Creating abstract method of area
+    public abstract void area();
+}
+// Creating a class Trapezoid which extends the shape class
+class Trapezoid extends Shape {
+    int side = 4;
+    float area;
+    @Override
+    // Implementing abstract method of numberOfSides
+    public void  numberOfSides() {
+        System.out.println("Sides for Trapezoid is :" + side);
+    }
+    @Override
+    // Implementing abstract method of area
+    public void area() {
+        Scanner in = new Scanner(System.in);
+        // Taking values from console
+        System.out.println("Enter Longbase for Trapezoid");
+        int longbase=in.nextInt();
+        System.out.println("Enter Shortbase for Trapezoid");
+        int shortbase=in.nextInt();
+        System.out.println("Enter height for Trapezoid");
+        int height=in.nextInt();
+        // Calculating area
+        area =(float) ((longbase+shortbase)/2)*height;
+        System.out.println("Area of a Trapezoid is:" + area);
+        in.close();
+    }
+}
+// Creating a class Triangle which extends the shape class
+class Triangle extends Shape {    
+    float area;
+    int side = 3;
+    @Override
+    // Implementing abstract method of numberOfSides
+    public void  numberOfSides() {
+        System.out.println("Sides for Triangle is:" + side);
+    }
+    @Override
+    // Implementing abstract method of area
+    public void area() {
+        Scanner in=new Scanner(System.in);   // Taking values from console
+        System.out.println("Enter Breath of the triangle :");
+        int breadth = in.nextInt();
+        System.out.println("Enter Height of the triangle :");
+        int height = in.nextInt();
+        // Calculating area
+        area =(float) (breadth*height)/2;
+        System.out.println("Area of a Triangle is:" + area);
+        in.close();
+    }
+}
+
+// Creating a class Hexagon which extends the shape class
+class Hexagon extends Shape {
+    int side = 6;
+    float area;
+    @Override
+    // Implementing abstract method of numberOfSides
+    public void  numberOfSides() {
+        System.out.println("Sides of Hexagon is:" + side);
+    }
+    @Override
+    // Implementing abstract method of area
+    public void area() {
+        // Calulating area
+        area = (float) (3 * Math.sqrt(3) * (side * side)) / 2;
+        System.out.println("Area of a Hexagon is:" + area);
+    }
+}
+public class Area {
+    public static void main(String[] args) {
+        // For choosing options
+        System.out.println("1.Trapezoid");
+        System.out.println("2.Triangle");
+        System.out.println("3.Hexagon");
+        Scanner in = new Scanner(System.in);  // Scanner class
+        System.out.println("Select Option");
+        int op=in.nextInt();  // Storing the number in op
+        switch(op)  // switch case to execute selected option
+        {
+        case 1:
+        {
+            // creating object for the Trapezoid class
+            Shape tz = new Trapezoid();
+            // Calling Trapezoid class methods by using object of that class
+            tz. numberOfSides();
+            tz.area();
+            break;
+        }
+        case 2:
+        {
+            // creating object for the Triangle class
+            Shape t = new Triangle();
+            // Calling Triangle class methods by using object of that class
+            t. numberOfSides();
+            t.area();
+            break;
+        }
+        case 3:
+        {
+
+            // creating object for the Hexagon class
+            Shape h = new Hexagon();
+            // Calling Hexagon class methods by using object of that class
+            h. numberOfSides();
+            h.area();
+            break;
+        }
+        default:  // if it is not in given cases
+        {
+            System.out.println("Choose correct option");
+        }
+
+        }
+        in.close();  // Scanner class closing
+    }
+}
+
+
+
+
+
