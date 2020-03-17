@@ -1,0 +1,114 @@
+import java.util.Scanner;
+class Bank{  
+    float getRateOfInterest(){return 0;}  
+}  
+class SBI extends Bank{  
+    float getRateOfInterest(){
+        return 8.4f;}  
+}  
+class HDFC extends Bank{  
+    float getRateOfInterest(){return 7.3f;}  
+}  
+class BOB extends Bank{  
+    float getRateOfInterest(){return 9.7f;}  
+}  
+class BankMain{  
+    public static void main(String args[]){  
+        Scanner in =new Scanner(System.in);  // Scanner Class
+        // Taking inputs from console
+        System.out.println("ENTER ACCOUNT NUMBER");
+        int acc_num=in.nextInt();
+        System.out.println("ENTER ACCOUNT HOLDER NAME");
+        String acc_hname=in.next();
+        System.out.println("ENTER BANK NAME");
+        String b_name=in.next();
+        System.out.println("ENTER TRANCTION TYPE ");
+        String tran_type=in.next();
+        System.out.println("ENTER TRANSACTION AMOUNT");
+        int tran_amnt=in.nextInt();
+        System.out.println("ENTER BALANCE  AMOUNT");
+        int bal_amnt=in.nextInt();
+        // Creating Object for SBI
+        Bank S=new SBI();  
+        System.out.println("SBI Rate of Interest: "+S.getRateOfInterest()); 
+        // Creating Object for HDFC
+        Bank H=new HDFC();  
+        System.out.println("HDFC Rate of Interest: "+H.getRateOfInterest());
+        //Creating Object for BOB
+        Bank B=new BOB();  
+        System.out.println("BOB Rate of Interest: "+B.getRateOfInterest()); 
+        // Printing Details
+        System.out.println("ACCOUNT NUMBER:"+acc_num);
+        System.out.println("ACCOUNT HOLDER NAME:"+acc_hname);
+        System.out.println("BANK NAME:"+b_name);
+        System.out.println("TRANCTION TYPE :"+tran_type);
+        System.out.println("TRANSACTION AMOUNT:"+tran_amnt);
+        System.out.println("BALANCE  AMOUNT:"+bal_amnt);
+        
+        if(b_name.equalsIgnoreCase("SBI")) // Checking Condition
+        {
+            float intrst=(bal_amnt/S.getRateOfInterest());   // Calculating interest
+            // Printing Interest and New Balance
+            System.out.println("INTEREST AMOUNT:"+intrst); 
+            double amnt=0;
+            if (tran_type.equalsIgnoreCase("withdrawal")) { // checking for withdrawal or not
+                if (tran_amnt <= bal_amnt) {
+                    amnt = bal_amnt - tran_amnt;
+
+                } else {
+                    System.out.println("invaid transaction");
+                }
+            }
+            if (tran_type.equalsIgnoreCase("deposit")) { // checking for deposit or not
+                amnt = bal_amnt + tran_amnt;
+            }
+            System.out.println("NEW BALACE:"+(amnt));
+        }
+        else if(b_name.equalsIgnoreCase("HDFC"))   // Checking Condition
+        {
+            // Printing Interest and New Balance
+            float intrst=(bal_amnt/H.getRateOfInterest());  // Calculating interest
+            System.out.println("INTEREST:"+intrst);              
+            double amnt=0;
+            if (tran_type.equalsIgnoreCase("withdrawal")) { // checking for withdrawal or not
+                if (tran_amnt <= bal_amnt) {
+                    amnt = bal_amnt - tran_amnt;
+
+                } else {
+                    System.out.println("invaid transaction");
+                }
+            }
+            if (tran_type.equalsIgnoreCase("deposit")) { // checking for deposit or not
+                amnt = bal_amnt + tran_amnt;
+            }
+            System.out.println("NEW BALACE:"+(amnt));
+        }
+        else if(b_name.equalsIgnoreCase("BOB"))  // Checking Condition
+        {
+            float intrst=(bal_amnt/B.getRateOfInterest());  // Calculating interest
+            // Printing Interest and New Balance
+            System.out.println("INTEREST:"+(intrst));
+            double amnt=0;
+            if (tran_type.equalsIgnoreCase("withdrawal")) { // checking for withdrawal or not
+                if (tran_amnt <= bal_amnt) {
+                    amnt = bal_amnt - tran_amnt;
+
+                } else {
+                    System.out.println("invaid transaction");
+                }
+            }
+            if (tran_type.equalsIgnoreCase("deposit")) { // checking for deposit or not
+                amnt = bal_amnt + tran_amnt;
+            }
+            System.out.println("NEW BALACE:"+(amnt));
+        }
+        in.close();  // closing Scanner class
+    }
+}
+
+
+
+
+
+
+
